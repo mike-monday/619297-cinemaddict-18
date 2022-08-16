@@ -1,5 +1,5 @@
-import NavigationView from '../view/navigation-view.js';
+// import NavigationView from '../view/navigation-view.js';
 
-export default class NavigationPresenter {
+// export default class NavigationPresenter {
 
-}
+// }
