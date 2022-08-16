@@ -1,27 +1,19 @@
-import { createElement } from '../render.js';
+import BaseView from './base-view.js';
+import createAdjacentHtml from './filters-template.js';
 
-const createNewFilter = () => (
-  `<ul class="sort">
-    <li><a href="#" class="sort__button">Sort by default</a></li>
-    <li><a href="#" class="sort__button">Sort by date</a></li>
-    <li><a href="#" class="sort__button sort__button--active">Sort by rating</a></li>
-  </ul>`
-);
+export default class FiltersView extends BaseView {
+  constructor() {
+    super();
 
-export default class NewFilterView {
-  getTemplate() {
-    return createNewFilter();
+    this.classList.add('sort');
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
+  /**
+   * @override
+   */
+  createAdjacentHtml() {
+    return createAdjacentHtml();
   }
 }
+
+customElements.define('film-filters', FiltersView);

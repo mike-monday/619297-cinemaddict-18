@@ -1,6 +1,5 @@
 import FilmCollectionView from '../view/film-collection-view.js';
 import FilmCardView from '../view/film-card-view.js';
-
 export default class FilmCollectionPresenter {
   model = null;
   view = new FilmCollectionView().setTitleHidden();
@@ -11,7 +10,7 @@ export default class FilmCollectionPresenter {
     );
   }
 
-  createFilmCardView(film) {
+  createFilmCardView(/* film */) {
     return new FilmCardView();
     // .setTitle(film['film_info'].title);
   }
