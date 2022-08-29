@@ -1,6 +1,4 @@
 import BaseView from './base-view.js';
-import createAdjacentHtml from './filters-template.js';
-
 export default class FiltersView extends BaseView {
   constructor() {
     super();
@@ -12,7 +10,11 @@ export default class FiltersView extends BaseView {
    * @override
    */
   createAdjacentHtml() {
-    return createAdjacentHtml();
+    return /* html */ `
+      <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
+      <li><a href="#" class="sort__button">Sort by date</a></li>
+      <li><a href="#" class="sort__button">Sort by rating</a></li>
+    `;
   }
 }
 
