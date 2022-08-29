@@ -1,6 +1,4 @@
 import BaseView from './base-view.js';
-import createAdjacentHtml from './film-collection-template.js';
-
 export default class FilmCollectionView extends BaseView {
   constructor() {
     super();
@@ -10,13 +8,20 @@ export default class FilmCollectionView extends BaseView {
     this.titleView = this.querySelector('.films-list__title');
     this.listView = this.querySelector('.films-list__container');
     this.buttonView = this.querySelector('.films-list__show-more');
+    // this.filmTitle = this.querySelector('film-card__title');
   }
 
   /**
    * @override
    */
   createAdjacentHtml() {
-    return createAdjacentHtml();
+    return /* html */ `
+      <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
+
+      <div class="films-list__container"></div>
+
+      <button class="films-list__show-more">Show more</button>
+    `;
   }
 
   setTitleHidden(flag = true) {
@@ -25,8 +30,8 @@ export default class FilmCollectionView extends BaseView {
     return this;
   }
 
-  addToList(...views) {
-    this.listView.append(...views);
+  setCards(...views) {
+    this.listView.replaceChildren(...views);
 
     return this;
   }
@@ -36,6 +41,9 @@ export default class FilmCollectionView extends BaseView {
 
     return this;
   }
+  // setTitle(film) {
+  //   this.filmTitle.textContent = film
+  // }
 }
 
 customElements.define('film-collection', FilmCollectionView);
