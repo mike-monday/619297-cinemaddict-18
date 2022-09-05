@@ -17,7 +17,7 @@ export default class ListPresenter extends Presenter {
   constructor(...init) {
     super(...init);
 
-    console.log(this.view);
+    // console.log(this.view);
 
     this.updateView();
     this.model.movies.addEventListener(['update', 'filter', 'sort'], this.updateView.bind(this));

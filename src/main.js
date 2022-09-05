@@ -59,9 +59,9 @@ applicationModel.ready().then(() => {
   new PopupPresenter(applicationModel, popupView);
 });
 
-Object.assign(globalThis, {
-  applicationModel,
-  FilterPredicate
-});
+// Object.assign(globalThis, {
+//   applicationModel,
+//   FilterPredicate
+// });
 // const filmCollectionModel = new FilmCollectionModel;
 

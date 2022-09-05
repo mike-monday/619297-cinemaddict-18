@@ -17,10 +17,10 @@ export default class PopupPresenter extends Presenter {
   }
 
   onCardClick(event) {
-    console.log(event.target, event.detail);
+    // console.log(event.target, event.detail);
 
     const movie = this.model.movies.findById(event.detail);
-    console.log(movie);
+    // console.log(movie);
     const { info } = movie;
 
     this.view
