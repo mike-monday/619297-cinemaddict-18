@@ -1,5 +1,5 @@
-import BaseView from './base-view.js';
-export default class FiltersView extends BaseView {
+import ComponentView, { html } from './component-view.js';
+export default class SortView extends ComponentView {
   constructor() {
     super();
 
@@ -10,7 +10,7 @@ export default class FiltersView extends BaseView {
    * @override
    */
   createAdjacentHtml() {
-    return /* html */ `
+    return html`
       <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
       <li><a href="#" class="sort__button">Sort by date</a></li>
       <li><a href="#" class="sort__button">Sort by rating</a></li>
@@ -18,4 +18,4 @@ export default class FiltersView extends BaseView {
   }
 }
 
-customElements.define('film-filters', FiltersView);
+customElements.define(String(SortView), SortView);

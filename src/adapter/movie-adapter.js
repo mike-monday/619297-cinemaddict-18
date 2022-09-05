@@ -1,14 +1,17 @@
+import Adapter from './adapter.js';
 import MovieInfoAdapter from './movie-info-adapter.js';
 import MovieMetaAdapter from './movie-meta-adapter.js';
 
-export default class MovieAdapter {
+export default class MovieAdapter extends Adapter {
   /**
-   * @param {Movie} movie
+   * @param {Movie} init
    */
-  constructor(movie) {
-    this.id = movie.id;
-    this.commentIds = movie.comments;
-    this.info = new MovieInfoAdapter(movie.film_info);
-    this.meta = new MovieMetaAdapter(movie.user_details);
+  constructor(init) {
+    super();
+
+    this.id = init.id;
+    this.commentIds = init.comments;
+    this.info = new MovieInfoAdapter(init.film_info);
+    this.meta = new MovieMetaAdapter(init.user_details);
   }
 }

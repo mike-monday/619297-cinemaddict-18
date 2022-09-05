@@ -1,15 +1,19 @@
-export default class MovieMetaAdapter {
+import Adapter from './adapter.js';
+export default class MovieMetaAdapter extends Adapter {
   /**
-   * @param {MovieMeta} meta
+   * @param {MovieMeta} init
    */
-  constructor(meta) {
-    this.scheduled = meta.watchlist;
-    this.watched = meta.already_watched;
-    this.watchDate = meta.watching_date;
-    this.favorite = meta.favorite;
+  constructor(init) {
+    super();
+
+    this.scheduled = init.watchlist;
+    this.watched = init.already_watched;
+    this.watchDate = init.watching_date;
+    this.favorite = init.favorite;
   }
 
   /**
+   * @override
    * @return {MovieMeta}
    */
   toJSON() {

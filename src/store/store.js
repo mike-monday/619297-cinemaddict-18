@@ -1,19 +1,19 @@
-import BaseStoreQueryError from './base-store-query-error.js';
+import StoreError from './store-error.js';
 
 /**
- * @template Record
+ * @template Item
  */
 export default class Store {
   #baseUrl;
-  #credentials;
+  #auth;
 
   /**
    * @param {string} baseUrl
-   * @param {string} credentials
+   * @param {string} auth
    */
-  constructor(baseUrl, credentials) {
+  constructor(baseUrl, auth) {
     this.#baseUrl = baseUrl;
-    this.#credentials = credentials;
+    this.#auth = auth;
   }
 
   /**
@@ -25,24 +25,26 @@ export default class Store {
     const url = this.#baseUrl + path;
     const headers = {
       'content-type': 'application/json',
-      'authorization': this.#credentials,
+      'authorization': this.#auth,
       ...options.headers
     };
 
     return fetch(url, {...options, headers}).then((response) => {
       if (!response.ok) {
-        throw new BaseStoreQueryError(response);
+        throw new StoreError(response);
       }
       return response.json();
     });
   }
 
   /**
-   * @return {Promise<Record[]>}
+   * @return {Promise<Item[]>}
    */
   list() {
     return this.query('/', {
-      method: 'get'
+      method: 'get',
+      cache: 'force-cache' // TODO убрать force-cache
     });
   }
+  // TODO add, update, remove
 }

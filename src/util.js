@@ -19,3 +19,5 @@ export const truncateText = (text, length = 140, ellipsis = '…') => {
 };
 
 export const setGenre = (arr) => arr[0];
+
+export const setContentRating = (text) => `${text}+`;
