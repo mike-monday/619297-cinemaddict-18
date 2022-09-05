@@ -1,11 +1,15 @@
-export default class CommentAdapter {
+import Adapter from './adapter.js';
+
+export default class CommentAdapter extends Adapter {
   /**
-   * @param {MovieComment} comment
+   * @param {MovieComment} init
    */
-  constructor(comment) {
-    this.id = comment.id;
-    this.author = comment.author;
-    this.message = comment.comment;
-    this.emotion = comment.emotion;
+  constructor(init) {
+    super();
+
+    this.id = init.id;
+    this.author = init.author;
+    this.message = init.comment;
+    this.emotion = init.emotion;
   }
 }

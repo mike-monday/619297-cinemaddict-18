@@ -1,5 +1,5 @@
-import BaseView from './base-view.js';
-export default class PopupView extends BaseView {
+import ComponentView, { html } from './component-view.js';
+export default class PopupView extends ComponentView {
   constructor() {
     super();
 
@@ -24,7 +24,7 @@ export default class PopupView extends BaseView {
    * @override
    */
   createAdjacentHtml() {
-    return /* html */ `
+    return html`
       <div class="film-details__inner">
         <div class="film-details__top-container">
           <div class="film-details__close">
@@ -34,7 +34,7 @@ export default class PopupView extends BaseView {
             <div class="film-details__poster">
               <img class="film-details__poster-img" src="./images/posters/the-great-flamarion.jpg" alt="">
 
-              <p class="film-details__age">18+</p>
+              <p class="film-details__age" id="rating">18+</p>
             </div>
 
             <div class="film-details__info">
@@ -255,7 +255,8 @@ export default class PopupView extends BaseView {
       actors: '',
       release: '',
       runtime: '',
-      country: ''
+      country: '',
+      rating: ''
     };
 
     Object.keys(defaultSummary).forEach((id) => {
@@ -272,6 +273,6 @@ export default class PopupView extends BaseView {
   }
 }
 
-customElements.define('film-popup', PopupView);
+customElements.define(String(PopupView), PopupView);
 
 

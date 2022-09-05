@@ -1,9 +1,12 @@
-export default class MovieReleaseAdapter {
+import Adapter from './adapter.js';
+export default class MovieReleaseAdapter extends Adapter {
   /**
-   * @param {MovieRelease} release
+   * @param {MovieRelease} init
    */
-  constructor(release) {
-    this.date = release.date;
-    this.country = release.release_country;
+  constructor(init) {
+    super();
+
+    this.date = init.date;
+    this.country = init.release_country;
   }
 }

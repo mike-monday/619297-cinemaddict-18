@@ -1,4 +1,4 @@
-export default class BaseStoreQueryError extends Error {
+export default class StoreError extends Error {
   /**
    * @param {Response} response
    */

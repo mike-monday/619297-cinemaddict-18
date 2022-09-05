@@ -1,5 +1,4 @@
 /** @typedef {import('../adapter/movie-adapter').default} MovieAdapter */
-import FilmCollectionView from '../view/collection-view.js';
 import CardView from '../view/card-view.js';
 import { formatYear } from '../format.js';
 import { formatDuration } from '../format.js';
@@ -8,23 +7,27 @@ import { truncateText } from '../util.js';
 import { setGenre } from '../util.js';
 import Presenter from './presenter.js';
 
+/**
+ * @extends {Presenter<ApplicationModel, CollectionView>}
+ */
 export default class ListPresenter extends Presenter {
-  constructor(model) {
-    super();
+  /**
+   * @param  {[model: ApplicationModel, view: CollectionView]} init
+   */
+  constructor(...init) {
+    super(...init);
 
-    this.model = model;
-    this.view = new FilmCollectionView().setTitleHidden();
+    console.log(this.view);
+
+    this.updateView();
+    this.model.addEventListener(['update', 'filter', 'sort'], this.updateView.bind(this));
   }
 
-  init(containerView) {
-    const films = this.model.list();
+  updateView() {
+    const films = this.model.movies.list();
     const cardViews = films.map(this.createCardView, this);
 
-    containerView.append(
-      this.view.setCards(...cardViews)
-      // this.view.addToList(...this.model.get().map(this.createFilmCardView))
-      // this.view.addToList(...Array.from({length: 5}, this.createFilmCardView))
-    );
+    this.view.setCards(...cardViews);
   }
 
   /**

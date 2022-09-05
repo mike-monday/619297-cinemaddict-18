@@ -1,5 +1,5 @@
-import BaseView from './base-view.js';
-export default class FilmCollectionView extends BaseView {
+import ComponentView, { html } from './component-view.js';
+export default class CollectionView extends ComponentView {
   constructor() {
     super();
 
@@ -15,7 +15,7 @@ export default class FilmCollectionView extends BaseView {
    * @override
    */
   createAdjacentHtml() {
-    return /* html */ `
+    return html`
       <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
 
       <div class="films-list__container"></div>
@@ -46,4 +46,4 @@ export default class FilmCollectionView extends BaseView {
   // }
 }
 
-customElements.define('film-collection', FilmCollectionView);
+customElements.define(String(CollectionView), CollectionView);
