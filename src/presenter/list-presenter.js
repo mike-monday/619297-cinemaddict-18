@@ -20,7 +20,7 @@ export default class ListPresenter extends Presenter {
     console.log(this.view);
 
     this.updateView();
-    this.model.addEventListener(['update', 'filter', 'sort'], this.updateView.bind(this));
+    this.model.movies.addEventListener(['update', 'filter', 'sort'], this.updateView.bind(this));
   }
 
   updateView() {

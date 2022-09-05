@@ -12,16 +12,30 @@ export default class DataTableModel extends CollectionModel {
 
   setFilter(predicate) {
     this.#filter = predicate;
+
     this.dispatchEvent(new CustomEvent('filter'));
+
+    return this;
+  }
+
+  getFilter() {
+    return this.#filter;
   }
 
   setSort(compare) {
     this.#sort = compare;
+
     this.dispatchEvent(new CustomEvent('sort'));
+
+    return this;
+  }
+
+  getSort() {
+    return this.#sort;
   }
 
 
-  list(predicate = this.#filter, compare = this.#sort) {
+  list(predicate = this.getFilter(), compare = this.getSort()) {
     return this.listAll().filter(predicate).sort(compare);
   }
 }

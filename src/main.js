@@ -3,6 +3,7 @@ import './view/rank-view.js';
 import './view/navigation-view.js';
 import './view/sort-view.js';
 import Store from './store/store.js';
+import FilterPredicate from './enum/fiiter-predicate.js';
 
 
 // import FilmCollectionModel from './model/film-collection-model.js';
@@ -44,7 +45,7 @@ const movieStore = new Store(MOVIES_URL, AUTH);
 const commentsStore = new Store(COMMENTS_URL, AUTH);
 
 
-const movies = new DataTableModel(movieStore, (item) => new MovieAdapter(item));
+const movies = new DataTableModel(movieStore, (item) => new MovieAdapter(item)).setFilter(FilterPredicate.ALL);
 const comments = new CollectionModel(commentsStore, (item) => new CommentAdapter(item));
 const applicationModel = new ApplicationModel(movies, comments);
 
@@ -58,5 +59,9 @@ applicationModel.ready().then(() => {
   new PopupPresenter(applicationModel, popupView);
 });
 
+Object.assign(globalThis, {
+  applicationModel,
+  FilterPredicate
+});
 // const filmCollectionModel = new FilmCollectionModel;
 
